@@ -546,33 +546,34 @@ public class DualCameraView extends CameraView {
     };
 
     public static boolean dualAvailableDefault(Context context, boolean withWhitelist) {
-        boolean def = (
-            SharedConfig.getDevicePerformanceClass() >= SharedConfig.PERFORMANCE_CLASS_AVERAGE &&
-            Camera.getNumberOfCameras() > 1 &&
-            SharedConfig.allowPreparingHevcPlayers()
-        );
-        if (def) {
-            def = context != null && context.getPackageManager().hasSystemFeature("android.hardware.camera.concurrent");
-            if (!def && withWhitelist) {
-                int hash = (Build.MANUFACTURER + " " + Build.DEVICE).toUpperCase().hashCode();
-                for (int i = 0; i < dualWhitelistByDevice.length; ++i) {
-                    if (dualWhitelistByDevice[i] == hash) {
-                        def = true;
-                        break;
-                    }
-                }
-                if (!def) {
-                    hash = (Build.MANUFACTURER + Build.MODEL).toUpperCase().hashCode();
-                    for (int i = 0; i < dualWhitelistByModel.length; ++i) {
-                        if (dualWhitelistByModel[i] == hash) {
-                            def = true;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        return def;
+        // boolean def = (
+        //     SharedConfig.getDevicePerformanceClass() >= SharedConfig.PERFORMANCE_CLASS_AVERAGE &&
+        //     Camera.getNumberOfCameras() > 1 &&
+        //     SharedConfig.allowPreparingHevcPlayers()
+        // );
+        // if (def) {
+        //     def = context != null && context.getPackageManager().hasSystemFeature("android.hardware.camera.concurrent");
+        //     if (!def && withWhitelist) {
+        //         int hash = (Build.MANUFACTURER + " " + Build.DEVICE).toUpperCase().hashCode();
+        //         for (int i = 0; i < dualWhitelistByDevice.length; ++i) {
+        //             if (dualWhitelistByDevice[i] == hash) {
+        //                 def = true;
+        //                 break;
+        //             }
+        //         }
+        //         if (!def) {
+        //             hash = (Build.MANUFACTURER + Build.MODEL).toUpperCase().hashCode();
+        //             for (int i = 0; i < dualWhitelistByModel.length; ++i) {
+        //                 if (dualWhitelistByModel[i] == hash) {
+        //                     def = true;
+        //                     break;
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        // return def;
+        return true;
     }
 
     public static boolean dualAvailableStatic(Context context) {
